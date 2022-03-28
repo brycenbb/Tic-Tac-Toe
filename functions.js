@@ -29,4 +29,3 @@ const gameBoard = (() => {
 })();
 
 document.getElementById('button').addEventListener('click',gameBoard.newBoard);
-// button.addEventListener('click',gameBoard.newBoard);
