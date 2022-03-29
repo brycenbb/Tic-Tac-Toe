@@ -9,9 +9,15 @@ body{
     height: 100vh;
     place-items: center;
     box-sizing: border-box;
-
 }
 
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 .container {
     box-sizing: border-box;
     background-color: aquamarine;
