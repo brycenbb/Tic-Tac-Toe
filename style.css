@@ -32,6 +32,9 @@ body{
     width: 250px;
     height: 250px;
     border: solid black 2px;
+    display: grid;
+    place-items: center;
+    font-size: 7rem;
 }
 
 #button {

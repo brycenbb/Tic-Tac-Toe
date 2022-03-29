@@ -1,10 +1,26 @@
 const container = document.querySelector('.container');
+
+const Player = (token) => {
+    const letter = () => {return token};
+
+    return {letter}
+
+}
+
 const gameBoard = (() => {
     const newBoard = () => {
-        for(let i = 1; i < 10; i++){
+        let gameArray = Array(9);
+        gameArray.fill("");
+        for(let i = 0; i < 9; i++){
             let card = document.createElement('div');
             card.classList.add('card');
             card.id = i;
+            card.addEventListener('click',function() {
+                gameArray[i] = gameController.nextMove(i,gameArray)
+                card.textContent = gameArray[i];
+                console.table(gameArray);
+
+            });
             container.appendChild(card);
         }
         container.classList.remove('hidden');
@@ -22,10 +38,50 @@ const gameBoard = (() => {
             gridCards[i].textContent = "";
             gridCards[i].style.backgroundColor = "green";
         }
-    };
+        let gameArray = Array(9);
+        gameArray.fill("");
+        gameController.reset();
 
+    };
 
     return {newBoard,clearBoard}; 
 })();
+
+
+
+const gameController = (() => {
+    let toggle = true;
+    let winChecker = 0;
+    const reset = () => {
+        toggle = true;
+        winChecker = 0;
+    };
+
+    const player1 = Player('X');
+    const player2 = Player('O');
+
+    const nextMove = (index,array) => {
+        let nextItem = "";
+
+        if(array[index] === ""){
+            winChecker++;
+            if(toggle){
+                toggle = false;
+                nextItem = player1.letter();
+            }
+            else{
+                toggle = true;
+                nextItem = player2.letter();
+            }    
+
+            return nextItem;
+        }
+        return array[index];
+    };
+
+    return {nextMove,reset}
+})();
+
+
 
 document.getElementById('button').addEventListener('click',gameBoard.newBoard);
