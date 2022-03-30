@@ -66,7 +66,7 @@ const gameBoard = (() => {
 
         //Adding player/computer choice functionality, then need
         //to check if a player has won after the 5th move every move, then need to check if the board is full
-        // then do second players move 
+        // and if it is end the game, then do second players move and then check if won again.
         
         
         document.getElementById('button').removeEventListener('click',gameBoard.newBoard);
@@ -124,7 +124,8 @@ const gameController = (() => {
 
     const winSelector = () => {
         //check current board against potential winning boards, if X or O is the one that won, 
-        //and display whoever that may be as the winner in a prompt.
+        //and display whoever that may be as the winner in a prompt. Return false if there is
+        //no winner
         gameBoard.currBoard();
         return player1;
     }
